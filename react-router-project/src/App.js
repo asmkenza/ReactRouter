@@ -6,7 +6,7 @@ import Home from './components/Home'
 import Data from "./components/Data";
 import Contact from "./components/Contact";
 import { createRoutesFromElements } from "react-router-dom";
-
+import { dataLoader } from "./components/Data";
 
 function App() {
 
@@ -14,7 +14,8 @@ const router= createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Root/>}> 
     <Route index element={<Home/>}/> 
-    <Route path='/data' element={<Data/>}/> 
+    <Route path='/data' loader={dataLoader} element={<Data/>}/> 
+    <Route path='/data/:id' loader={dataLoader} element={<Data/>}/> 
     <Route path='/contact' element={<Contact/>}/> 
     </Route>
   )
@@ -40,8 +41,6 @@ const Root = () => {
     </div>
 
    <div><Outlet/></div>
- 
     </>
   ) 
-
 }
